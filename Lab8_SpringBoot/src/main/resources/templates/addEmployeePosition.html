@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Developer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />	
+</head>
+<body>
+	<h1>Add Position</h1>
+	<form th:action="@{/employee/{id}/positions(id=${employee.id})}" method="get" enctype="multipart/form-data" >
+	<div class="col-md-4">
+		<div class="panel panel-default">
+		 <div class="panel-heading">Employee Info</div>
+		 <div class="panel-body" style="padding-left: 5px;">
+			Name: <b th:text="${employee.firstname}" /> <b th:text="${employee.lastname}" /><br/>
+			Email: <span th:text="${employee.email}" /><br/>
+			Salary: <span th:text="${employee.salary}" /><br/>
+			<br/>Positions:
+				<span th:each="position : ${employee.positions}">
+					<br/>&nbsp;&nbsp;<span th:text="${position.name}" />
+				</span>
+				<br/>
+				</div>
+		</div>	
+			<div class="col-md-6">
+			<select class="form-control" name="positionId">
+				<option th:each="position : ${positions}" 
+					th:value="${position.positionid}" 
+					th:text="${position.name}">Position</option>
+			</select>
+			</div>
+			<input type="submit" class="btn btn-success" value="Add position"/>
+	</div>
+	</form>
+</body>
+</html>
